@@ -24,6 +24,7 @@ public class CopyVariablesOnStart implements ExecutionListener {
         CreditApplication application = new CreditApplication(customerId, amountInEuro, interestRate, loanPeriod);
 
         execution.setVariable(InstanceVariables.CREDIT_APPLICATION, application);
+        execution.setVariable("amountInEuro", application.getAmountInEuro());
         LOG.info("New credit application: {}", application);
     }
 }

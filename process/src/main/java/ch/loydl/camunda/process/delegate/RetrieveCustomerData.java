@@ -24,5 +24,9 @@ public class RetrieveCustomerData implements JavaDelegate {
         CreditApplication application = (CreditApplication) execution.getVariable(InstanceVariables.CREDIT_APPLICATION);
         CustomerData customerData = service.findById(application.getCustomerId());
         execution.setVariable(InstanceVariables.CUSTOMER_DATA, customerData);
+        execution.setVariable("customerId", customerData.getCustomerId());
+        execution.setVariable("fullName", customerData.getFullName());
+        execution.setVariable("personality", customerData.getPersonality());
+        execution.setVariable("rating", customerData.getRating());
     }
 }
