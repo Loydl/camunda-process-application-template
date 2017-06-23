@@ -23,35 +23,10 @@
         <bpmn:flowNodeRef>find-decision</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:initiator="INITIAL_USER">
+    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:formKey="forms/credit-application-form-received.json" camunda:initiator="INITIAL_USER">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${copyVariablesOnStart}" event="end" />
-        <camunda:formData>
-          <camunda:formField id="CUSTOMER_ID" label="Kunden-Nr." type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-              <camunda:constraint name="minlength" config="8" />
-              <camunda:constraint name="maxlength" config="10" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="AMOUNT_IN_EURO" label="Kreditsumme" type="long">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-              <camunda:constraint name="min" config="1000" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="INTEREST_RATE" label="Zinssatz" type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="LOAN_PERIOD" label="Laufzeit (Monate)" type="long">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-              <camunda:constraint name="min" config="6" />
-            </camunda:validation>
-          </camunda:formField>
-        </camunda:formData>
+        <camunda:formData />
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1xackb0</bpmn:outgoing>
     </bpmn:startEvent>

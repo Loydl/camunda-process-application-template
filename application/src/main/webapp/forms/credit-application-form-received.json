@@ -1,0 +1,32 @@
+{
+  "title": "Customer applies for credit",
+  "type": "object",
+  "required": [
+    "CUSTOMER_ID",
+    "AMOUNT_IN_EURO",
+    "INTEREST_RATE",
+    "LOAN_PERIOD"
+  ],
+  "properties": {
+    "CUSTOMER_ID": {
+      "type": "string",
+      "title": "Kunden-Nr.",
+      "minLength": 8,
+      "maxLength": 10
+    },
+    "AMOUNT_IN_EURO": {
+      "type": "number",
+      "title": "Kreditsumme",
+      "minimum": 1000
+    },
+    "INTEREST_RATE": {
+      "type": "string",
+      "title": "Zinssatz"
+    },
+    "LOAN_PERIOD": {
+      "type": "number",
+      "title": "Laufzeit (Monate)",
+      "minimum": 6
+    }
+  }
+}
