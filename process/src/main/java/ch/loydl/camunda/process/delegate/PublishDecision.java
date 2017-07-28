@@ -1,6 +1,7 @@
 package ch.loydl.camunda.process.delegate;
 
 import static ch.loydl.camunda.process.InstanceVariables.*;
+import static org.camunda.spin.Spin.JSON;
 
 import java.util.Date;
 
@@ -27,8 +28,8 @@ public class PublishDecision implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         String decision = (String) execution.getVariable(DECISION);
         String responsible = (String) execution.getVariable(RESPONSIBLE);
-        CreditApplication application = (CreditApplication) execution.getVariable(CREDIT_APPLICATION);
-        CustomerData customer = (CustomerData) execution.getVariable(CUSTOMER_DATA);
+        CreditApplication application = JSON(execution.getVariable(CREDIT_APPLICATION).toString()).mapTo(CreditApplication.class);
+        CustomerData customer = JSON(execution.getVariable(CUSTOMER_DATA).toString()).mapTo(CustomerData.class);
         boolean accepted = "ACCEPT".equals(decision);
 
         CreditDecision creditDecision = new CreditDecision(responsible, accepted, new Date());

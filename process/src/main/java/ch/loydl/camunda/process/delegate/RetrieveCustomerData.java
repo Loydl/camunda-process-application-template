@@ -7,6 +7,8 @@ import ch.loydl.camunda.process.api.CreditApplication;
 import ch.loydl.camunda.process.api.CustomerData;
 import ch.loydl.camunda.service.api.CustomerDataService;
 
+import static org.camunda.spin.Spin.JSON;
+
 /**
  * @author Stefan Schulze, PENTASYS AG
  * @since 26.05.2017
@@ -20,7 +22,7 @@ public class RetrieveCustomerData implements JavaDelegate {
     }
 
     public void execute(DelegateExecution execution) throws Exception {
-        CreditApplication application = (CreditApplication) execution.getVariable(InstanceVariables.CREDIT_APPLICATION);
+        CreditApplication application = JSON(execution.getVariable(InstanceVariables.CREDIT_APPLICATION)).mapTo(CreditApplication.class);
         CustomerData customerData = service.findById(application.getCustomerId());
         execution.setVariable(InstanceVariables.CUSTOMER_DATA, customerData);
     }

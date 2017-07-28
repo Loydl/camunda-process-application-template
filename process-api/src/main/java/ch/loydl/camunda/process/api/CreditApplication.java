@@ -2,10 +2,12 @@ package ch.loydl.camunda.process.api;
 
 import java.io.Serializable;
 
+import static org.camunda.spin.Spin.JSON;
+
 /**
  * Represents the customer's credit application.
  */
-public class CreditApplication {
+public class CreditApplication implements Serializable{
 
     private String customerId;
     private Long amountInEuro;
@@ -55,12 +57,6 @@ public class CreditApplication {
     }
 
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CreditApplication{");
-        sb.append("customerId='").append(customerId).append('\'');
-        sb.append(", amountInEuro=").append(amountInEuro);
-        sb.append(", interestRate=").append(interestRate);
-        sb.append(", loanPeriodInMonth=").append(loanPeriodInMonth);
-        sb.append('}');
-        return sb.toString();
+        return JSON(this).toString();
     }
 }

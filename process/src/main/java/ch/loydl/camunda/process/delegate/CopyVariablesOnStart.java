@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ch.loydl.camunda.process.api.CreditApplication;
 
+import static org.camunda.spin.Spin.JSON;
+
 /**
  * Transform single variable instances into "complex" object.
  */
@@ -23,7 +25,7 @@ public class CopyVariablesOnStart implements ExecutionListener {
 
         CreditApplication application = new CreditApplication(customerId, amountInEuro, interestRate, loanPeriod);
 
-        execution.setVariable(InstanceVariables.CREDIT_APPLICATION, application);
+        execution.setVariable(InstanceVariables.CREDIT_APPLICATION, JSON(application).toString());
         execution.setVariable("amountInEuro", application.getAmountInEuro());
         LOG.info("New credit application: {}", application);
     }
