@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.2">
   <bpmn:collaboration id="credit-collaboration">
-    <bpmn:participant id="bpm-engine" name="BPM Engine&#10;" processRef="credit-application_react_tasklist" />
+    <bpmn:participant id="bpm-engine" name="BPM Engine&#10;" processRef="credit-application_embedded_html" />
     <bpmn:participant id="customer-service" name="Customer Service&#10;&#10;" />
     <bpmn:participant id="dms-service" name="DMS Service" />
     <bpmn:messageFlow id="MessageFlow_0zgsc53" sourceRef="retrieve-customer" targetRef="customer-service" />
     <bpmn:messageFlow id="MessageFlow_14cfktl" sourceRef="customer-service" targetRef="retrieve-customer" />
     <bpmn:messageFlow id="MessageFlow_0fdire8" sourceRef="publish-decision" targetRef="dms-service" />
   </bpmn:collaboration>
-  <bpmn:process id="credit-application_react_tasklist" name="Credit_Application_React_Tasklist" isExecutable="true">
+  <bpmn:process id="credit-application_embedded_html" name="Credit_Application_embedded_html" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="automation" name="Automation">
         <bpmn:flowNodeRef>credit-application-form-received</bpmn:flowNodeRef>
@@ -23,7 +23,7 @@
         <bpmn:flowNodeRef>find-decision</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:formKey="forms/credit-application-form-received.json" camunda:initiator="INITIAL_USER">
+    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:formKey="embedded:app:forms/credit-application-form-received.html" camunda:initiator="INITIAL_USER">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${copyVariablesOnStart}" event="end" />
         <camunda:formData />
@@ -68,7 +68,7 @@
       <bpmn:outgoing>SequenceFlow_1djg3mt</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1djg3mt" sourceRef="ExclusiveGateway_1rfabd3" targetRef="publish-decision" />
-    <bpmn:userTask id="find-decision" name="Find decision" camunda:formKey="forms/find-decision.json" camunda:assignee="${INITIAL_USER}">
+    <bpmn:userTask id="find-decision" name="Find decision" camunda:formKey="embedded:app:forms/find-decision.html" camunda:assignee="${INITIAL_USER}">
       <bpmn:documentation><![CDATA[Please approve or reject the customer's credit application.]]></bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:formData />
