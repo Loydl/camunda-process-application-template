@@ -8,8 +8,9 @@ import static org.camunda.spin.Spin.JSON;
  * @author Stefan Schulze, PENTASYS AG
  * @since 15.02.2017
  */
-public class CustomerData implements Serializable{
+public class CustomerData implements Serializable {
 
+    static final String serialVersionUID = "ZicB3dz9w3zsgFBe8eHt";
     private String customerId;
     private String fullName;
     private Personality personality;

@@ -1,12 +1,15 @@
 package ch.loydl.camunda.process.api;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Stefan Schulze, PENTASYS AG
  * @since 15.02.2017
  */
-public class CreditDecision {
+public class CreditDecision implements Serializable {
+
+    static final String serialVersionUID = "CiKeBpn3VC4eNhC9jVv2";
 
     private final String resposible;
     private final boolean accepted;
