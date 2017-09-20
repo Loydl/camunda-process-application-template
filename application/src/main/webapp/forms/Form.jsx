@@ -31,6 +31,10 @@ class Form extends React.Component {
         this.props.fetchVariables(this.state.variables);
     }
 
+    componentDidUpdate() {
+        this.props.fetchVariables(this.state.variables);
+    }
+
     render() {
 
         const CUSTOMER_DATA = getVariable("CUSTOMER_DATA", this.props.variables);
@@ -51,7 +55,7 @@ class Form extends React.Component {
                         <option value="REJECT">Ablehnen</option>
                     </select>
                 </label>
-                <input className="btn btn-default" type="submit" value="Complete" />
+                <p className="float-right"><input className="btn btn-default" type="submit" value="Complete" /></p>
             </form>
         )
     }

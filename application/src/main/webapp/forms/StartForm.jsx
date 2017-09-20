@@ -40,7 +40,7 @@ class StartForm extends React.Component {
                     <label htmlFor="LOAN_PERIOD">Laufzeit (Monate)</label>
                     <input type="text" className="form-control" id="LOAN_PERIOD" value={this.state.LOAN_PERIOD} onChange={(e) => this.setState({ LOAN_PERIOD: e.target.value })} />
                 </div>
-                <input className="btn btn-default" type="submit" value="Start" />
+                <input className="btn btn-default float-right" type="submit" value="Start" />
             </form>
         )
     }
