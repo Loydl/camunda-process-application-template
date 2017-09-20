@@ -6,6 +6,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import ch.loydl.camunda.process.api.CreditApplication;
 import ch.loydl.camunda.process.api.CustomerData;
 import ch.loydl.camunda.service.api.CustomerDataService;
+import org.camunda.bpm.engine.variable.Variables;
 
 import static org.camunda.spin.Spin.JSON;
 
@@ -24,6 +25,9 @@ public class RetrieveCustomerData implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         CreditApplication application = JSON(execution.getVariable(InstanceVariables.CREDIT_APPLICATION)).mapTo(CreditApplication.class);
         CustomerData customerData = service.findById(application.getCustomerId());
-        execution.setVariable(InstanceVariables.CUSTOMER_DATA, customerData);
+        execution.setVariable(InstanceVariables.CUSTOMER_DATA,
+                Variables.objectValue(customerData)
+                .serializationDataFormat(Variables.SerializationDataFormats.JSON)
+                .create());
     }
 }

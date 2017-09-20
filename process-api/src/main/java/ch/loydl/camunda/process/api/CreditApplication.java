@@ -9,6 +9,7 @@ import static org.camunda.spin.Spin.JSON;
  */
 public class CreditApplication implements Serializable{
 
+    static final String serialVersionUID = "mvszJeBCcGU9476GnhvT";
     private String customerId;
     private Long amountInEuro;
     private Double interestRate;
