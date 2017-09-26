@@ -23,7 +23,7 @@
         <bpmn:flowNodeRef>find-decision</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:formKey="forms/credit-application-form.js" camunda:initiator="INITIAL_USER">
+    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:formKey="forms/creditApplicationForm.js" camunda:initiator="INITIAL_USER">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${copyVariablesOnStart}" event="end" />
         <camunda:formData />
@@ -68,7 +68,7 @@
       <bpmn:outgoing>SequenceFlow_1djg3mt</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1djg3mt" sourceRef="ExclusiveGateway_1rfabd3" targetRef="publish-decision" />
-    <bpmn:userTask id="find-decision" name="Find decision" camunda:formKey="forms/find-decision.js" camunda:assignee="${INITIAL_USER}">
+    <bpmn:userTask id="find-decision" name="Find decision" camunda:formKey="forms/findDecision.js" camunda:assignee="${INITIAL_USER}">
       <bpmn:documentation><![CDATA[Please approve or reject the customer's credit application.]]></bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:formData />
