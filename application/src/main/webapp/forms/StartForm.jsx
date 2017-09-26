@@ -18,10 +18,10 @@ class StartForm extends React.Component {
 
         return (
             <form onSubmit={(e) => { e.preventDefault(); this.props.submit([
-                { key: "CUSTOMER_ID", value: this.state.CUSTOMER_ID, valueType: "String" },
-                { key: "AMOUNT_IN_EURO", value: this.state.AMOUNT_IN_EURO, valueType: "Long" },
-                { key: "INTEREST_RATE", value: this.state.INTEREST_RATE, valueType: "String" },
-                { key: "LOAN_PERIOD", value: this.state.LOAN_PERIOD, valueType: "Long" }
+                { key: "CUSTOMER_ID", value: this.state.CUSTOMER_ID, valueType: "STRING" },
+                { key: "AMOUNT_IN_EURO", value: this.state.AMOUNT_IN_EURO, valueType: "LONG" },
+                { key: "INTEREST_RATE", value: this.state.INTEREST_RATE, valueType: "STRING" },
+                { key: "LOAN_PERIOD", value: this.state.LOAN_PERIOD, valueType: "LONG" }
             ])}}>
                 <h1>Customer applies for credit.</h1>
                 <div className="form-group">
