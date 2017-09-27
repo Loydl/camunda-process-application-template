@@ -42,7 +42,7 @@ class Form extends React.Component {
 
 
         return (
-            <form onSubmit={(e) => { e.preventDefault(); this.props.complete([{ key: "MANUAL_DECISION", value: this.state.MANUAL_DECISION, valueType: "String" }])}}>
+            <form onSubmit={(e) => { e.preventDefault(); this.props.complete([{ key: "MANUAL_DECISION", value: this.state.MANUAL_DECISION, valueType: "STRING" }])}}>
                 <p><b>Kunden-Nr.</b>: {CUSTOMER_DATA.customerId}</p>
                 <p><b>Name</b>: {CUSTOMER_DATA.fullName}</p>
                 <p><b>Kreditsumme</b>: {CREDIT_APPLICATION.amountInEuro} </p>
