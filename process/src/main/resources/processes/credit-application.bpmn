@@ -23,35 +23,10 @@
         <bpmn:flowNodeRef>find-decision</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:initiator="INITIAL_USER">
+    <bpmn:startEvent id="credit-application-form-received" name="Customer applies for credit&#10;&#10;" camunda:formKey="embedded:app:forms/start.html" camunda:initiator="INITIAL_USER">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${copyVariablesOnStart}" event="end" />
-        <camunda:formData>
-          <camunda:formField id="CUSTOMER_ID" label="Kunden-Nr." type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-              <camunda:constraint name="minlength" config="8" />
-              <camunda:constraint name="maxlength" config="10" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="AMOUNT_IN_EURO" label="Kreditsumme" type="long">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-              <camunda:constraint name="min" config="1000" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="INTEREST_RATE" label="Zinssatz" type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="LOAN_PERIOD" label="Laufzeit (Monate)" type="long">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-              <camunda:constraint name="min" config="6" />
-            </camunda:validation>
-          </camunda:formField>
-        </camunda:formData>
+        <camunda:formData />
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1xackb0</bpmn:outgoing>
     </bpmn:startEvent>
@@ -93,40 +68,10 @@
       <bpmn:outgoing>SequenceFlow_1djg3mt</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1djg3mt" sourceRef="ExclusiveGateway_1rfabd3" targetRef="publish-decision" />
-    <bpmn:userTask id="find-decision" name="Find decision" camunda:assignee="${INITIAL_USER}">
+    <bpmn:userTask id="find-decision" name="Find decision" camunda:formKey="embedded:app:forms/findDecision.html" camunda:assignee="${INITIAL_USER}">
       <bpmn:documentation><![CDATA[Please approve or reject the customer's credit application.]]></bpmn:documentation>
       <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="VIEW_ID" label="Kunden-Nr." type="string" defaultValue="${CUSTOMER_DATA.customerId}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="VIEW_NAME" label="Name" type="string" defaultValue="${CUSTOMER_DATA.fullName}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="VIEW_AMOUNT" label="Kreditsumme" type="string" defaultValue="${CREDIT_APPLICATION.amountInEuro}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="VIEW_PERSONALITY" label="Person" type="string" defaultValue="${CUSTOMER_DATA.personality}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="VIEW_RATING" label="Rating" type="string" defaultValue="${CUSTOMER_DATA.rating}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="MANUAL_DECISION" label="Entscheidung" type="enum">
-            <camunda:value id="ACCEPT" name="Annehmen" />
-            <camunda:value id="REJECT" name="Ablehnen" />
-          </camunda:formField>
-        </camunda:formData>
+        <camunda:formData />
         <camunda:taskListener delegateExpression="${userResponsible}" event="complete" />
         <camunda:taskListener delegateExpression="${getSwimlaneGroup}" event="create" />
       </bpmn:extensionElements>

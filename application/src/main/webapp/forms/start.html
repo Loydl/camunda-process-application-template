@@ -1,0 +1,31 @@
+<form cam-form role="form" name="startForm" ng-controller="StartController as ctrl">
+    <script cam-script type="text/form-script">
+
+		camForm.on('form-loaded', function() {
+			$scope.ctrl.onFormLoaded(camForm);
+		});
+
+		camForm.on('variables-fetched', function() {
+			$scope.ctrl.onVariablesFetched(camForm);
+        });
+
+        camForm.on('store', function(evt) {
+            $scope.ctrl.onStore(camForm);
+        });
+
+        camForm.on('variables-restored', function() {
+			$scope.ctrl.onVariablesRestored(camForm);
+		});
+
+		camForm.on('submit', function(evt) {
+			$scope.ctrl.onSubmit(camForm, evt);
+		});
+
+		camForm.on('submit-failed', function(evt, res) {
+			$scope.ctrl.onSubmitFailed(camForm, evt, res);
+		});
+
+	</script>
+    <!--authorization-->
+    <div ng-include="'/app/view/start/startFormContent.tpl.html'"></div>
+</form>

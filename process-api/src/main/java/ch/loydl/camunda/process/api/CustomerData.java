@@ -1,13 +1,10 @@
 package ch.loydl.camunda.process.api;
 
-import java.io.Serializable;
-
 /**
  * @author Stefan Schulze, PENTASYS AG
  * @since 15.02.2017
  */
-public class CustomerData implements Serializable {
-    private static final long serialVersionUID = -7859978517789923049L;
+public class CustomerData {
 
     private String customerId;
     private String fullName;

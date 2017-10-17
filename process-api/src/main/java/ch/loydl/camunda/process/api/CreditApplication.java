@@ -1,13 +1,9 @@
 package ch.loydl.camunda.process.api;
 
-import java.io.Serializable;
-
 /**
  * Represents the customer's credit application.
  */
-public class CreditApplication implements Serializable {
-
-    private static final long serialVersionUID = -6297453116377369211L;
+public class CreditApplication {
 
     private String customerId;
     private Long amountInEuro;
